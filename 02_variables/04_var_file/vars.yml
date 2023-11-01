@@ -1,0 +1,13 @@
+---
+example_key: example value
+
+example_list:
+  - item1
+  - item2
+  - item3
+
+example_dict:
+  dict_key1: value1
+  dict_key2: value2
+
+...
