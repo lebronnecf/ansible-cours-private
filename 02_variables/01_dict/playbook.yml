@@ -1,0 +1,36 @@
+---
+# YAML documents begin with the document separator ---
+
+# Le tiret en YAML indique une Liste
+# Un playbook Ansible contient une liste de plays
+- name: Variables
+  hosts: centos1
+  gather_facts: false
+
+  # Play: la configuration générale du play
+
+  # Vars: variables qui s'appliquent au play
+  vars:
+    aDict: 
+      aVal: "hello world!"
+
+  # Tasks: La liste des tâches à exécuter
+  tasks:
+    - name: Show dict
+      debug:
+        msg: "{{ aDict }}"
+
+    - name: Show dict item 1
+      debug:
+        msg: "{{ aDict.aVal }}"
+
+    - name: Show dict item 1
+      debug:
+        msg: "{{ aDict['aVal'] }}"
+
+  # Handlers: la liste des handlers à utilisé en réaction à un notify_key
+
+  # Roles: les roles à importer dans le play
+
+# Three dots indicate the end of a YAML document
+...
