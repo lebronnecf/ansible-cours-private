@@ -4,23 +4,30 @@
 # Le tiret en YAML indique une Liste
 # Un playbook Ansible contient une liste de plays
 - name: Configuration du message du jour
-  hosts: centos
-  user: root
-  gather_facts: false
+  hosts: linux
 
   # Play: la configuration générale du play
 
   # Vars: variables qui s'appliquent au play
   vars:
-    motd: "Bienvenue sur CentOS (powered by Ansible) !!!\n"
+    motd_centos: "Bienvenue sur CentOS (powered by Ansible) !!!\n"
+    motd_ubuntu: "Bienvenue sur Ubuntu (powered by Ansible) !!!\n"
 
   # Tasks: La liste des tâches à exécuter
   tasks:
     - name: Configure le motd
       copy: # On utilise le module copy
-        content: "{{ motd }}"
+        content: "{{ motd_centos }}"
         dest: /etc/motd
       notify: MOTD changed
+      when: ansible_distribution == "CentOS"
+
+    - name: Configure le motd
+      copy: # On utilise le module copy
+        content: "{{ motd_ubuntu }}"
+        dest: /etc/motd
+      notify: MOTD changed
+      when: ansible_distribution == "Ubuntu"
 
   # Handlers: la liste des handlers à utilisé en réaction à un notify_key
   handlers:
