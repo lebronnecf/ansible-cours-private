@@ -1,0 +1,31 @@
+---
+# YAML documents begin with the document separator ---
+
+# Le tiret en YAML indique une Liste
+# Un playbook Ansible contient une liste de plays
+- name: Jinja2
+  hosts: all
+
+  # Play: la configuration générale du play
+
+  # Vars: variables qui s'appliquent au play
+
+  # Tasks: La liste des tâches à exécuter
+  tasks:
+    - name: Jinja2 if
+      debug:
+        msg: >
+              {% if ansible_hostname == "ubuntu-c" -%}
+                This is the controller node
+              {% elif ansible_hostname == "centos1" -%}
+                My favorite node
+              {% else -%}
+                This is {{ ansible_hostname }}
+              {% endif -%}
+
+  # Handlers: la liste des handlers à utilisé en réaction à un notify_key
+
+  # Roles: les roles à importer dans le play
+
+# Three dots indicate the end of a YAML document
+...
