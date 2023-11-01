@@ -12,7 +12,7 @@
 
   # Vars: variables qui s'appliquent au play
   vars:
-    motd: "Bienvenue sur CentOS (powered by Ansible) !\n"
+    motd: "Bienvenue sur CentOS (powered by Ansible) !!!\n"
 
   # Tasks: La liste des tâches à exécuter
   tasks:
@@ -20,8 +20,13 @@
       copy: # On utilise le module copy
         content: "{{ motd }}"
         dest: /etc/motd
+      notify: MOTD changed
 
   # Handlers: la liste des handlers à utilisé en réaction à un notify_key
+  handlers:
+    - name: MOTD changed
+      debug:
+        msg: Le MOTD a été changé
 
   # Roles: les roles à importer dans le play
 
