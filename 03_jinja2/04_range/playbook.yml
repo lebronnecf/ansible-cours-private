@@ -12,11 +12,11 @@
 
   # Tasks: La liste des tâches à exécuter
   tasks:
-    - name: Jinja2 loop
+    - name: Jinja2 range
       debug:
-        msg: >
-              {% for entry in ansible_interfaces -%}
-                Interface {{ loop.index }} = {{ entry }}
+        msg: > # En jinja2, la dernière valeur de la range est ignorée
+              {% for entry in range(1,11) -%}
+                {{ entry }}
               {% endfor -%}
 
   # Handlers: la liste des handlers à utilisé en réaction à un notify_key
