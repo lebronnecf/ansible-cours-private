@@ -16,7 +16,7 @@
   tasks:
     - name: Configure le motd
       copy: # On utilise le module copy
-        src: centos_motd
+        content: "Bienvenue sur Centos (powered by Ansible) !\n"
         dest: /etc/motd
 
   # Handlers: la liste des handlers à utilisé en réaction à un notify_key
