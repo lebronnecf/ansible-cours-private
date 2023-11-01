@@ -11,12 +11,14 @@
   # Play: la configuration générale du play
 
   # Vars: variables qui s'appliquent au play
+  vars:
+    motd: "Bienvenue sur CentOS (powered by Ansible) !\n"
 
   # Tasks: La liste des tâches à exécuter
   tasks:
     - name: Configure le motd
       copy: # On utilise le module copy
-        content: "Bienvenue sur Centos (powered by Ansible) !\n"
+        content: "{{ motd }}"
         dest: /etc/motd
 
   # Handlers: la liste des handlers à utilisé en réaction à un notify_key
