@@ -4,7 +4,7 @@
 # Le tiret en YAML indique une Liste
 # Un playbook Ansible contient une liste de plays
 - name: Jinja2
-  hosts: all
+  hosts: ubuntu-c
 
   # Play: la configuration générale du play
 

@@ -1,0 +1,50 @@
+---
+# YAML documents begin with the document separator ---
+
+# Le tiret en YAML indique une Liste
+# Un playbook Ansible contient une liste de plays
+- name: Jinja2
+  hosts: ubuntu-c
+  gather_facts: false
+
+  # Play: la configuration générale du play
+
+  # Vars: variables qui s'appliquent au play
+
+  # Tasks: La liste des tâches à exécuter
+  tasks:
+    - name: Jinja2 filters
+      debug:
+        msg: >
+             ---=== Ansible Jinja2 filters ===---
+
+             --== min [1, 2, 3, 4, 5] ==--
+
+             {{ [1, 2, 3, 4, 5] | min }}
+
+             --== max [1, 2, 3, 4, 5] ==--
+
+             {{ [1, 2, 3, 4, 5] | max }}
+
+             --== unique [1, 1, 2, 2, 3, 3, 4, 4, 5, 5] ==--
+
+             {{ [1, 1, 2, 2, 3, 3, 4, 4, 5, 5] | unique }}
+
+             --== difference [1, 2, 3, 4, 5] vs [2, 3, 4] ==--
+
+             {{ [1, 2, 3, 4, 5] | difference([2, 3, 4]) }}
+
+             --== random ['rod', 'jane', 'freddy'] ==--
+
+             {{ ['rod', 'jane', 'freddy'] | random }}
+
+             --== urlsplit hostname ==--
+
+             {{ "http://docs.ansible.com/ansible/latest/playbooks_filters.html" | urlsplit('hostname') }}
+
+  # Handlers: la liste des handlers à utilisé en réaction à un notify_key
+
+  # Roles: les roles à importer dans le play
+
+# Three dots indicate the end of a YAML document
+...
