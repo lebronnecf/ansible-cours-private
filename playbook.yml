@@ -6,6 +6,7 @@
 - name: Configuration du message du jour
   hosts: centos
   user: root
+  gather_facts: false
 
   # Play: la configuration générale du play
 
